@@ -557,15 +557,15 @@ class Message(Object, Update):
                 web_app_data = types.WebAppData._parse(action)
                 service_type = enums.MessageServiceType.WEB_APP_DATA
 
-            from_user = types.User._parse(client, users.get(user_id, None))
-            sender_chat = types.Chat._parse(client, message, users, chats, is_chat=False) if not from_user else None
+            # from_user = types.User._parse(client, users.get(user_id, None))
+            # sender_chat = types.Chat._parse(client, message, users, chats, is_chat=False) if not from_user else None
 
             parsed_message = Message(
                 id=message.id,
                 date=utils.timestamp_to_datetime(message.date),
                 chat=types.Chat._parse(client, message, users, chats, is_chat=True),
-                from_user=from_user,
-                sender_chat=sender_chat,
+                # from_user=from_user,
+                # sender_chat=sender_chat,
                 service=service_type,
                 new_chat_members=new_chat_members,
                 left_chat_member=left_chat_member,
@@ -753,8 +753,8 @@ class Message(Object, Update):
                 else:
                     reply_markup = None
 
-            from_user = types.User._parse(client, users.get(user_id, None))
-            sender_chat = types.Chat._parse(client, message, users, chats, is_chat=False) if not from_user else None
+            # from_user = types.User._parse(client, users.get(user_id, None))
+            # sender_chat = types.Chat._parse(client, message, users, chats, is_chat=False) if not from_user else None
 
             reactions = types.MessageReactions._parse(client, message.reactions)
 
@@ -762,8 +762,8 @@ class Message(Object, Update):
                 id=message.id,
                 date=utils.timestamp_to_datetime(message.date),
                 chat=types.Chat._parse(client, message, users, chats, is_chat=True),
-                from_user=from_user,
-                sender_chat=sender_chat,
+                # from_user=from_user,
+                # sender_chat=sender_chat,
                 text=(
                     Str(message.message).init(entities) or None
                     if media is None or web_page is not None
